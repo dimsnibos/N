@@ -3,6 +3,9 @@ const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 
+const load = document.getElementById("loading")
+const body = document.body
+
 const navMenu = document.getElementById("nav-menu")
 tengah.style.display = "block"
 
@@ -39,16 +42,31 @@ window.onscroll = function () {
 
 const ig = document.getElementById("ig")
 ig.addEventListener("click",()=>{
-    window.location.href="https://instagram.com/ptramadian_"
+  load.style.display = "flex"
+  body.style.opacity = "0.7"
+  setTimeout(()=>{
+  window.location.href="https://instagram.com/ptramadian_"
+  },1200)
+  
 })
 
 const wa= document.getElementById("wa")
 wa.addEventListener("click",()=>{
-    window.location.href="https://wa.me/+6287763628863"
+  load.style.display = "flex"
+  body.style.opacity = "0.7"
+  setTimeout(()=>{
+window.location.href="https://wa.me/+6287763628863"
+  },1200)
+    
 })
 
 function whatssApp(){
-    window.location.href="https://wa.me/+6287763628863"
+    load.style.display = "flex"
+  body.style.opacity = "0.7"
+  setTimeout(()=>{
+window.location.href="https://wa.me/+6287763628863"
+  },1200)
+    
 }
 
 const observer = new IntersectionObserver((entries) => {
