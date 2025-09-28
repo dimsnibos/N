@@ -6,6 +6,23 @@ const bawah = document.getElementById("bawah")
 const load = document.getElementById("loading")
 const body = document.body
 
+tengah.style.display = "block"
+
+hamburger.addEventListener("click",()=>{
+  if(tengah.style.display === "block"){
+    tengah.style.display = "none"
+    atas.style.rotate = "45deg"
+    atas.style.position = "absolute"
+    bawah.style.rotate = "-45deg"
+  }
+  else{
+    tengah.style.display = "block"
+    atas.style.rotate= "180deg"
+    atas.style.position = "relative"
+    bawah.style.rotate = "0deg"
+  }
+})
+
 const navMenu = document.getElementById("nav-menu")
 tengah.style.display = "block"
 
@@ -20,35 +37,17 @@ submitt.addEventListener("click",()=>{
   },1200)
 })
 
-hamburger.addEventListener("click",()=>{
-    if(tengah.style.display === "block"){
-        tengah.style.display = "none"
-        atas.style.rotate = "45deg"
-        atas.style.position = "absolute"
-        bawah.style.rotate = "-45deg"
-        navMenu.style.maxHeight = "500px"
-    }
-    else{
-        atas.style.position = "relative"
-        tengah.style.display = "block"
-        atas.style.rotate = "0deg"
-        bawah.style.rotate = "0deg"
-        navMenu.style.maxHeight = "0"
-    }
-})
-
-
 const navbar = document.getElementById("navbar")
-window.scroll = function(){
-  const header = document.querySelector("header")
+window.onscroll = function(){
+  const header = this.document.querySelector("header")
   const fixedNav = header.offsetTop
   if(window.pageYOffset > fixedNav){
     navbar.style.boxShadow = "0 0 9px 0 black"
-  }
-  else{
+  }else{
     navbar.style.boxShadow = "none"
   }
 }
+
 
 const ig = document.getElementById("ig")
 ig.addEventListener("click",()=>{
@@ -104,15 +103,15 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el => observer.observe(el));
 
 
-const value= document.getElementById("value")
-const calcRight = document.getElementById("calcRight")
+const value = document.getElementById("value")
 const calcLeft = document.getElementById("calcLeft")
+const calcRight = document.getElementById("calcRight")
 
-const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
+const numbers =["1","2","3","4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
-  button.addEventListener("click",function(){
+  button.addEventListener("click",()=>{
     value.innerHTML += number
   })
   calcLeft.append(button)
@@ -138,17 +137,17 @@ del.addEventListener("click",()=>{
 const enter = document.createElement("button")
 enter.innerHTML = "ENTER"
 enter.addEventListener("click",()=>{
-    let ekspresi = value.innerHTML
-    ekspresi = ekspresi.replace(/x/g,"*")
-    try{
-        value.innerHTML = eval(ekspresi)
-    }
-    catch{
-        value.innerHTML = "ERROR"
-        setTimeout(()=>{
-            value.innerHTML = " "
-        },1200)
-    }
+  let ekspresi = value.innerHTML
+  ekspresi = ekspresi.replace(/x/g,"*")
+  try{
+    value.innerHTML = eval(ekspresi)
+  }
+  catch{
+    value.innerHTML = "ERROR CANNOT OPERATE"
+    setTimeout(()=>{
+      value.innerHTML = ""
+    },1200)
+  }
 })
 calcRight.append(enter)
 
