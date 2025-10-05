@@ -1,10 +1,7 @@
 const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
-const bawah = document.getElementById("bawah")
 const tengah = document.getElementById("tengah")
-
-const load = document.getElementById("loading")
-const body = document.body
+const bawah = document.getElementById("bawah")
 
 tengah.style.display = "block"
 hamburger.addEventListener("click",()=>{
@@ -12,62 +9,63 @@ hamburger.addEventListener("click",()=>{
     tengah.style.display = "none"
     atas.style.position = "absolute"
     atas.style.rotate = "45deg"
-    bawah.style.rotate = "135deg"
+    bawah.style.rotate = "-45deg"
+    navMenu.style.maxHeight = "500px"
   }
   else{
     tengah.style.display = "block"
-    atas.style.position ="relative"
-    atas.style.rotate = "0deg"
+    atas.style.position = "relative"
+    atas.style.rotate = "180deg"
     bawah.style.rotate = "0deg"
+    navMenu.style.maxHeight = "0px"
   }
 })
 
-
 const navMenu = document.getElementById("nav-menu")
 
-const kumpul = document.getElementById("submit")
-kumpul.addEventListener("click",()=>{
+const subtmittt = document.getElementById("submit")
+subtmittt.addEventListener("click",()=>{
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.reload()
   },1200)
 })
 
 const navbar = document.getElementById("navbar")
-window.onscroll = function(){
-  const header = this.document.querySelector("header")
+window.onscroll = ()=>{
+  const header = document.querySelector("header")
   const fixedNav = header.offsetTop
-
   if(window.pageYOffset > fixedNav){
     navbar.style.boxShadow = "0 0 9px 0 black"
-  }
-  else{
+  }else{
     navbar.style.boxShadow = "none"
   }
 }
 
+const load = document.getElementById("loading")
+const body = document.body
+
 const instagram = document.getElementById("ig")
-instagram.addEventListener("click",()=>{
+instagram.onclick = ()=>{
   load.style.display = "flex"
-  body.style.opacity = "0.7"
+  body.style.opacity = "0.3"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
     window.location.href = "https://instagram.com/ptramadian_"
   },1200)
-})
+}
 
 const whatssapp = document.getElementById("wa")
 whatssapp.addEventListener("click",()=>{
-  load.style.display = 'flex'
+  load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https://wa.me/+6287763628863"
+    window.location.href = "https://wa.me/6287763628863"
   },1200)
 })
 
@@ -100,17 +98,17 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el => observer.observe(el));
 
 const value = document.getElementById("value")
-const calcRight = document.getElementById("calcRight")
 const calcLeft = document.getElementById("calcLeft")
+const calcRight = document.getElementById("calcRight")
 
 const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
-  calcLeft.append(button)
   button.addEventListener("click",()=>{
     value.innerHTML += number
   })
+   calcLeft.append(button)
 })
 
 const operations = ["+","-","x","/"]
@@ -125,24 +123,23 @@ operations.forEach((operation)=>{
 
 const del = document.createElement("button")
 del.innerHTML = "DEL"
-calcRight.append(del)
 del.addEventListener("click",()=>{
-  value.innerHTML = value.innerHTML.slice(0, -1)
+  value.innerHTML = value.innerHTML.slice(0 , -1)
 })
+calcRight.append(del)
 
 const clear = document.createElement("button")
 clear.innerHTML = "CLEAR"
-calcRight.append(clear)
 clear.addEventListener("click",()=>{
-  value.innerHTML = "CLEAR THE AREA..."
+  value.innerHTML = "CLEAR THE AREA"
   setTimeout(()=>{
-      value.innerHTML = " "
-  },1200)
+    value.innerHTML = " "
+  },1200 )
 })
+calcRight.append(clear)
 
 const enter = document.createElement("button")
 enter.innerHTML = "ENTER"
-calcRight.append(enter)
 enter.addEventListener("click",()=>{
   let ekspresi = value.innerHTML
   ekspresi = ekspresi.replace(/x/g,"*")
@@ -150,24 +147,18 @@ enter.addEventListener("click",()=>{
     value.innerHTML = eval(ekspresi)
   }
   catch{
-    value.innerHTML ="ERROR"
+    value.innerHTML = "ERROR"
     setTimeout(()=>{
-      value.innerHTML = ""
+      value.innerHTML = " "
     },1200)
   }
 })
+calcRight.append(enter)
 
 const bgr = document.createElement("button")
-bgr.innerHTML = "BGR"
+bgr.innerHTML = "NONE"
 calcRight.append(bgr)
-const warna =["red","white","blue","black","transparent","brown","black","white","black","white","transparent"]
-let isik = 0
-const chaD = document.getElementById("chatbot")
 
-bgr.addEventListener("click",()=>{
-  isik++
-  chaD.style.backgroundColor = warna[isik]
-})
 
 const piano = document.getElementById("chord")
 const chords = ["a","c","d","e","f"]
@@ -175,27 +166,29 @@ chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
   piano.append(button)
-  button.addEventListener("click",()=>{
-    const sound = new Audio(`${chord}.wav`)
+  button.onclick = ()=>{
+    const sound = new Audio (`${chord}.wav`)
     sound.play()
-  })
+  }
 })
+
+
 
 const user = document.getElementById("userTanya")
 const botAnswer = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi, What's your name?`,
-    `Hello ${data?.nama}, where are you from?`,
-    `Ouh youre from ${data?.kota}, Whats your favourite game?`,
-    `Wow ${data?.game}, thats interesting!`,
+    `Hi, Whats your name??`,
+    `Hi ${data?.nama}, where are you from?`,
+    `Ouhh youre from ${data?.kota}, whats your favourite game?`,
+    `Wow ${data?.game}, thats interesting!`
   ]
 }
 
-let init = 0
-let userData =[ ]
 botAnswer.innerHTML = botSay()[0]
+let userData = [ ]
+let init = 0
 
 function submit(){
   init++
@@ -210,7 +203,10 @@ function submit(){
     user.style.display = "none"
   }
   else if(init === 4){
-    botAnswer.innerHTML = "Nice to meet you!"
+    botAnswer.innerHTML = "NICE TO KNOW YOU!"
+    setTimeout(()=>{
+      window.location.reload()
+    },1200)
   }
 }
 
@@ -219,7 +215,6 @@ function responseBot(jawabanUser){
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
-    user.value = " "
     load.style.display = "none"
     body.style.opacity = "1"
     botAnswer.innerHTML = botSay(jawabanUser)[init]
