@@ -1,8 +1,10 @@
-const hamburger = document.getElementById("hamburger")
+let namaUser = prompt("Haiii siapa nama anda?")
+if(namaUser != "d"){
+  alert(`Hi ${namaUser}, salam kenal !`)
+  const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
-
 tengah.style.display = "block"
 hamburger.addEventListener("click",()=>{
   if(tengah.style.display === "block"){
@@ -10,21 +12,19 @@ hamburger.addEventListener("click",()=>{
     atas.style.position = "absolute"
     atas.style.rotate = "45deg"
     bawah.style.rotate = "-45deg"
-  }
-  else{
+  }else{
     tengah.style.display = "block"
     atas.style.position = "relative"
     atas.style.rotate = "0deg"
     bawah.style.rotate = "0deg"
   }
-})
+}) 
 
 const kumpulin = document.getElementById("submit")
 kumpulin.onclick = function(){
-  load.style.display = 'flex'
+  load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
-    window.location.reload()
     load.style.display = "none"
     body.style.opacity = "1"
   },1200)
@@ -45,16 +45,17 @@ window.onscroll = ()=>{
 const load = document.getElementById("loading")
 const body = document.body
 
-const instagram = document.getElementById("ig")
-instagram.addEventListener("click",()=>{
+const ig = document.getElementById("ig")
+ig.onclick = ()=>{
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https//instagram.com/ptramadian_"
+    window.location.href = "https://instagram.com/ptramadian_"
   },1200)
-})
+}
+
 
 function whatssApp(){
   load.style.display = "flex"
@@ -66,6 +67,7 @@ window.location.href="https://wa.me/+6287763628863"
   },1200)
     
 }
+
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -85,10 +87,10 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el => observer.observe(el));
 
 const value = document.getElementById("value")
-const calcLeft = document.getElementById("calcLeft")
 const calcRight = document.getElementById("calcRight")
+const calcLeft = document.getElementById("calcLeft")
 
-const numbers = ["1","2","3","4",'5',"6","7","8","9","(","0",")"]
+const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
@@ -102,45 +104,44 @@ const operations = ["+","-","x","/"]
 operations.forEach((operation)=>{
   const button = document.createElement("button")
   button.innerHTML = operation
-  button.onclick = function(){
+  button.addEventListener("click",()=>{
     value.innerHTML += operation
-  }
+  })
   calcRight.append(button)
 })
 
 const del = document.createElement("button")
 del.innerHTML = "DEL"
-del.addEventListener("click",()=>{
-  value.innerHTML = value.innerHTML.slice(0 , -1)
+del.addEventListener("click",function(){
+  value.innerHTML = value.innerHTML.slice(0, -1)
 })
 calcRight.append(del)
 
 const enter = document.createElement("button")
 enter.innerHTML = "ENTER"
-enter.addEventListener("click",()=>{
+enter.onclick = ()=>{
   let ekspresi = value.innerHTML
-  ekspresi = ekspresi.replace(/x/g, "x")
+  ekspresi = ekspresi.replace(/x/g,"*")
   try{
     value.innerHTML = eval(ekspresi)
   }
   catch{
     value.innerHTML = "ERROR"
     setTimeout(()=>{
-      value.innerHTML = " "
+      value.innerHTML = ""
     },1200)
   }
-})
+}
 calcRight.append(enter)
-
 
 const clear = document.createElement("button")
 clear.innerHTML = "CLEAR"
-clear.onclick =()=>{
+clear.addEventListener("click",()=>{
   value.innerHTML = "CLEAR THE AREA"
   setTimeout(()=>{
     value.innerHTML = ""
   },1200)
-}
+})
 calcRight.append(clear)
 
 const bgr = document.createElement("button")
@@ -159,11 +160,11 @@ const chords = ["a","c","d","e","f"]
 chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
-  piano.append(button)
-  button.onclick = function(){
+  button.addEventListener("click",()=>{
     const sound = new Audio(`${chord}.wav`)
     sound.play()
-  }
+  })
+  piano.append(button)
 })
 
 const user = document.getElementById("userTanya")
@@ -219,4 +220,9 @@ function responseBot(jawabanUser){
     user.value = " "
     bot.innerHTML = botSay(jawabanUser)[init]
   },1200)
+}
+}
+else{
+  alert(`Nama kurang tepat !`)
+  window.location.reload()
 }
