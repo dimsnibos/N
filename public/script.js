@@ -5,6 +5,8 @@ const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
+const navMenu = document.getElementById("nav-menu")
+
 tengah.style.display = "block"
 hamburger.onclick = function(){
   if(tengah.style.display === "block"){
@@ -12,12 +14,13 @@ hamburger.onclick = function(){
     atas.style.position = "absolute"
     atas.style.rotate = "45deg"
     bawah.style.rotate = "-45deg"
-  }
-  else{
+    navMenu.style.maxHeight = "500px"
+  }else{
     tengah.style.display = "block"
     atas.style.position = "relative"
-    bawah.style.rotate = "0deg"
     atas.style.rotate = "0deg"
+    bawah.style.rotate = "0deg"
+    navMenu.style.maxHeight = "0"
   }
 }
 
@@ -32,15 +35,16 @@ kumpulin.addEventListener('click',()=>{
 })
 
 const navbar = document.getElementById("navbar")
-window.onscroll = ()=>{
+window.addEventListener("scroll",()=>{
   const header = document.querySelector("header")
   const fixedNav = header.offsetTop
-  if(window.pageYOffset > fixedNav){
+  if(window.pageYOffset > fixedNav ){
     navbar.style.boxShadow = "0 0 9px 0 black"
-  }else{
+  }
+  else{
     navbar.style.boxShadow = "none"
   }
-}
+})
 
 const load = document.getElementById("loading")
 const body = document.body
@@ -92,9 +96,9 @@ const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
-  button.onclick = ()=>{
+  button.addEventListener("click",()=>{
     value.innerHTML += number
-  }
+  })
   calcLeft.append(button)
 })
 
@@ -108,10 +112,27 @@ operations.forEach((operation)=>{
   calcRight.append(button)
 })
 
+const enter = document.createElement("button")
+enter.innerHTML = "ENTER"
+enter.addEventListener("click",function(){
+  let ekspresi = value.innerHTML
+  ekspresi = ekspresi.replace(/x/g,"*")
+  try{
+    value.innerHTML = eval(ekspresi)
+  }
+  catch{
+    value.innerHTML = "ERROR"
+    setTimeout(()=>{
+      value.innerHTML = " "
+    },1200)
+  }
+})
+calcRight.append(enter)
+
 const del = document.createElement("button")
 del.innerHTML = "DEL"
-del.addEventListener("click",function(){
-  value.innerHTML = value.innerHTML.slice(0 ,-1)
+del.addEventListener("click",()=>{
+  value.innerHTML = value.innerHTML.slice(0, -1)
 })
 calcRight.append(del)
 
@@ -124,23 +145,6 @@ clear.onclick = ()=>{
   },1200)
 }
 calcRight.append(clear)
-
-const enter = document.createElement("button")
-enter.innerHTML = "ENTER"
-enter.addEventListener("click",()=>{
-  let ekspresi = value.innerHTML
-  ekspresi = ekspresi.replace(/x/g,"*")
-  try{
-    value.innerHTML = eval(ekspresi)
-  }
-  catch{
-    value.innerHTML = "ERROR"
-    setTimeout(()=>{
-      value.innerHTML = ""
-    },1200)
-  }
-})
-calcRight.append(enter)
 
 const bgr = document.createElement("button")
 bgr.innerHTML = "BGR"
@@ -158,11 +162,11 @@ const chords = ["a","c","d","e","f"]
 chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
-  piano.append(button)
-  button.addEventListener("click",()=>{
+  button.onclcik = ()=>{
     const sound = new Audio(`${chord}.wav`)
     sound.play()
-  })
+  }
+  piano.append(button)
 })
 
 const user = document.getElementById("userTanya")
@@ -224,4 +228,3 @@ function responseBot(jawabanUser){
   alert(`Hi ${namamuLek}, YOU SON OF THE..`)
   window.location.reload()
 }
-
