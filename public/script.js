@@ -1,32 +1,34 @@
-let namamuLek = prompt("Input your name :")
-if(namamuLek != "d"){
-alert(`Hi ${namamuLek}, Welcomeeee`)
-const hamburger = document.getElementById("hamburger")
+let isiNamalu = prompt("Who? ")
+if(isiNamalu != "dimas"){
+  alert("Haii " + isiNamalu)
+  const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
-navMenu.style.maxHeight = "0px"
 tengah.style.display = "block"
 hamburger.addEventListener("click",()=>{
   if(tengah.style.display === "block"){
-    navMenu.style.maxHeight = "500px"
     tengah.style.display = "none"
     atas.style.rotate = "45deg"
-    atas.style.position = "absolute"
     bawah.style.rotate = "-45deg"
+    atas.style.position = "absolute"
+    navMenu.style.maxHeight = "500px"
   }
   else{
-    navMenu.style.maxHeight = "0px"
     tengah.style.display = "block"
-    atas.style.position = "relative"
     atas.style.rotate = "0deg"
     bawah.style.rotate = "0deg"
+    atas.style.position = "relative"
+    navMenu.style.maxHeight = "0px"
   }
 })
 
+const load = document.getElementById("loading")
+const body = document.body
+
 const kumpulin = document.getElementById("submit")
-kumpulin.onclick = ()=>{
+kumpulin.onclick = function(){
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
@@ -41,21 +43,19 @@ window.onscroll = ()=>{
   const fixedNav = header.offsetTop
   if(window.pageYOffset > fixedNav){
     navbar.style.boxShadow = "0 0 9px 0 black"
-  }else{
+  }
+  else{
     navbar.style.boxShadow = "none"
   }
 }
 
-const load = document.getElementById("loading")
-const body = document.body
-
 const ig = document.getElementById("ig")
 ig.addEventListener("click",()=>{
   load.style.display = "flex"
-  body.style.opacity = "0.7"
+  body.style.opacity = "0.6"
   setTimeout(()=>{
     load.style.display = "none"
-    body.style.opacity = "0.7"
+    body.style.opacity = "1"
     window.location.href = "https://instagram.com/ptramadian_"
   },1200)
 })
@@ -66,7 +66,7 @@ function whatssApp(){
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href= "https://wa.me/6287763628863"
+    window.location.href = "https://wa.me/6287763628863"
   },1200)
 }
 
@@ -85,20 +85,20 @@ const observer = new IntersectionObserver((entries) => {
       }
     }
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.2 }); 
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el => observer.observe(el));
 
 const value = document.getElementById("value")
-const calcRight = document.getElementById("calcRight")
+const calcRight = document.getElementById("caclRight")
 const calcLeft = document.getElementById("calcLeft")
 
 const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
-numbers.forEach(function(number){
+numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
-  button.onclick = ()=>{
+  button.addEventListener("click",()=>{
     value.innerHTML += number
-  }
+  })
   calcLeft.append(button)
 })
 
@@ -106,32 +106,15 @@ const operations = ["+","-","x","/"]
 operations.forEach((operation)=>{
   const button = document.createElement("button")
   button.innerHTML = operation
-  button.addEventListener("click",()=>{
+  button.onclick = ()=>{
     value.innerHTML += operation
-  })
+  }
   calcRight.append(button)
 })
 
-const enter = document.createElement("button")
-enter.innerHTML = "ENTER"
-enter.addEventListener("click",()=>{
-  let ekspresi = value.innerHTML
-  ekspresi = ekspresi.replace(/x/g,"*")
-  try{
-    value.innerHTML = eval(ekspresi)
-  }
-  catch{
-    value.innerHTML = "ERROR"
-    setTimeout(()=>{
-      value.innerHTML = " "
-    },1200)
-  }
-})
-calcRight.append(enter)
-
 const del = document.createElement("button")
-del.innerHTML =  "DEL"
-del.addEventListener("click",()=>{
+del.innerHTML = "DEL"
+del.addEventListener("click",function(){
   value.innerHTML = value.innerHTML.slice(0, -1)
 })
 calcRight.append(del)
@@ -145,6 +128,23 @@ clear.addEventListener("click",()=>{
   },1200)
 })
 calcRight.append(clear)
+
+const enter = document.createElement("button")
+enter.innerHTML = "ENTER"
+enter.addEventListener("click",()=>{
+  let ekspresi = value.innerHTML
+  ekspresi = ekspresi.replace(/x/g,"*")
+  try{
+    value.innerHTML = eval(ekspresi)
+  }
+  catch{
+    value.innerHTML = "EROR JIR"
+    setTimeout(()=>{
+      value.innerHTML = " "
+    },1200)
+  }
+})
+calcRight.append(enter)
 
 const bgr = document.createElement("button")
 bgr.innerHTML = "BGR"
@@ -162,10 +162,10 @@ const chords = ["a","c","d","e","f"]
 chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
-  button.onclick = ()=>{
-    const sound = new Audio(chord + ".wav");
+  button.addEventListener("click",()=>{
+    const sound = new Audio(`${chord}.wav`)
     sound.play()
-  }
+  })
   piano.append(button)
 })
 
@@ -174,7 +174,7 @@ const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi im jarvis, whats your name?`,
+     `Hi im jarvis, whats your name?`,
     `Hi ${data?.nama}, Where are you from?`,
     `Ouhh youre from ${data?.kota}, whats your hobby?`,
     `Wow ${data?.hobi}, such a insteresting hobby!`,
@@ -186,29 +186,28 @@ let init = 0
 bot.innerHTML = botSay()[0]
 
 function submit(){
-  init = init+1
+  init++
   if(init === 1){
     responseBot({nama : user.value})
   }
   else if(init === 2){
-    responseBot({kota : user.value})
-    
+    responseBot({kota :user.value})
   }
   else if(init === 3){
     responseBot({hobi : user.value})
     user.style.display = "none"
   }
   else if(init === 4){
-    bot.innerHTML = "NICE TO KNOW YOU!"
+    bot.innerHTML= "NICE TO KNOW YA!"
     setTimeout(()=>{
       load.style.display = "flex"
       body.style.opacity = "0.7"
-    },500)
+    },600)
     setTimeout(()=>{
       load.style.display = "none"
       body.style.opacity = "1"
-      window.location.reload()
-    },1500)
+      window.location.reload();
+    },1700)
   }
 }
 
@@ -219,12 +218,14 @@ function responseBot(jawabanUser){
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    user.value =""
     bot.innerHTML = botSay(jawabanUser)[init]
+    user.value = " "
   },1200)
 }
-
-}else{
-  alert(`Hi ${namamuLek}, YOU SON OF THE..`)
-  window.location.reload()
+}
+else{
+  alert("NOWAY")
+  setTimeout(()=>{
+    window.location.reload()
+  },1200)
 }
