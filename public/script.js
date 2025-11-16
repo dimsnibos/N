@@ -89,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el => observer.observe(el));
 
 const value = document.getElementById("value")
-const calcRight = document.getElementById("caclRight")
+const calcRight = document.getElementById("calcRight")
 const calcLeft = document.getElementById("calcLeft")
 
 const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
