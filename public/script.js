@@ -21,7 +21,7 @@ document.querySelectorAll(".fade-left, .fade-right, .fade-bottom").forEach(el =>
 const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
-const bawah = document.getElementById("atas")
+const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
 
 tengah.style.display = 'block'
