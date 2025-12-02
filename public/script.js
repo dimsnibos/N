@@ -1,6 +1,7 @@
-let namaLO = prompt("Masukan nama Anda")
-if(namaLO != "Dimas"){
-  alert(`Hi ${namaLO}, nice to meet you!`)
+let namaLUU = prompt("masukan nama antum")
+if(namaLUU != "Dimas"){
+  alert("HII " + namaLUU+", Welcome to my website")
+  
   const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -24,40 +25,40 @@ const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
 
-tengah.style.display = 'block'
-hamburger.onclick = ()=>{
+tengah.style.display = "block"
+hamburger.addEventListener("click",()=>{
   if(tengah.style.display === "block"){
     tengah.style.display = "none"
-    atas.style.position = "absolute"
     atas.style.rotate = "45deg"
+    atas.style.position ="absolute"
     bawah.style.rotate = "-45deg"
     navMenu.style.maxHeight = "500px"
   }else{
     tengah.style.display = "block"
     atas.style.rotate = "0deg"
-    atas.style.position = "relative"
     bawah.style.rotate = "0deg"
+    atas.style.position = "relative"
     navMenu.style.maxHeight = "0px"
   }
-}
+})
 
 const navbar = document.getElementById("navbar")
-window.addEventListener("scroll",()=>{
+window.onscroll = ()=>{
   const header = document.querySelector("header")
   const fixedNav = header.offsetTop
   if(window.pageYOffset > fixedNav){
     navbar.style.boxShadow = "0 0 9px 0 black"
   }else{
-    navbar.style.boxShadow = "none"
+    navbar.style.boxShadow = "0 0 9px 0 black"
   }
-})
+}
 
 const load = document.getElementById("loading")
 const body = document.body
 
 const ig = document.getElementById("ig")
 ig.addEventListener("click",()=>{
-  load.style.display = 'flex'
+  load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
@@ -67,31 +68,30 @@ ig.addEventListener("click",()=>{
 })
 
 function whatssApp(){
-    load.style.display = 'flex'
+  load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
-    load.style.display = "none"
-    body.style.opacity = "1"
-    window.location.href = "https://wa.me/87763628863"
+  load.style.display = "none"
+  body.style.opacity = "1"
+  window.location.href = "https://wa.me/87763628863"
   },1200)
-
 }
 
 const kumpulin = document.getElementById("submit")
-kumpulin.addEventListener("click",()=>{
-    load.style.display = 'flex'
+kumpulin.onclick = function(){
+    load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
   },1200)
-})
+}
 
 const value = document.getElementById("value")
 const calcRight = document.getElementById("calcRight")
 const calcLeft = document.getElementById("calcLeft")
 
-const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
+const numbers =["1","2","3","4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
@@ -105,14 +105,14 @@ const operations = ["+","-","x","/"]
 operations.forEach((operation)=>{
   const button = document.createElement("button")
   button.innerHTML = operation
-  button.onclick = function(){
-    value.innerHTML += operation
+  button.onclick = ()=>{
+    value.innerHTML+= operation
   }
   calcRight.append(button)
 })
 
 const enter = document.createElement("button")
-enter.innerHTML = "ENTER"
+enter.innerHTML ="ENTER"
 enter.addEventListener("click",()=>{
   let ekspresi = value.innerHTML
   ekspresi = ekspresi.replace(/x/g,"*")
@@ -120,7 +120,7 @@ enter.addEventListener("click",()=>{
     value.innerHTML = eval(ekspresi)
   }
   catch{
-    value.innerHTML = "ERROR"
+    value.innerHTMl = "ERROR"
     setTimeout(()=>{
       value.innerHTML = " "
     },1200)
@@ -130,7 +130,7 @@ calcRight.append(enter)
 
 const del = document.createElement("button")
 del.innerHTML = "DEL"
-del.addEventListener('click',()=>{
+del.addEventListener("click",()=>{
   value.innerHTML = value.innerHTML.slice(0, -1)
 })
 calcRight.append(del)
@@ -138,9 +138,9 @@ calcRight.append(del)
 const clear = document.createElement("button")
 clear.innerHTML = "CLEAR"
 clear.addEventListener("click",()=>{
-  value.innerHTML = "CLEAR THE AREAAA"
+  value.innerHTML = "CLEAR THE AREA"
   setTimeout(()=>{
-    value.innerHTML = ""
+    value.innerHTML = " "
   },1200)
 })
 calcRight.append(clear)
@@ -166,40 +166,41 @@ const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi, Im Jarvis, who Are you?`,
-    `Hi ${data?.nama}, Where are you from?`,
-    `Ouh youre from ${data?.kota}, whats your hoby?`,
-    `WWOW ${data?.hobi}, such an Interesting hoby!`,
+    `Hello, Im jarvis, who are yu?`,
+    `Hi ${data?.nama}, where are you from?`,
+    `Ouhh youre from ${data?.kota}, whats your hobby?`,
+    `Wow ${data?.hobi}, thats Interesting!`,
   ]
 }
 
-let userData =[ ]
-bot.innerHTML = botSay()[0]
 let init = 0
+let userData = [ ]
+bot.innerHTML = botSay()[0]
 
 function submit(){
   init++
   if(init === 1){
     responseBot({nama : user.value})
   }
-  else if(init === 2){
+  else if (init === 2){
     responseBot({kota : user.value})
   }
   else if(init === 3){
     responseBot({hobi : user.value})
     user.style.display = "none"
   }
-  else if(init === 4){
-    bot.innerHTML = "NICE TO KNOW YA !"
+  else if(init ===4){
+    bot.innerHTML = "Nice to know Ya !!"
     setTimeout(()=>{
       load.style.display = "flex"
       body.style.opacity = "0.7"
-    },500)
+    },400)
+
     setTimeout(()=>{
       load.style.display = "none"
       body.style.opacity = "1"
       window.location.reload()
-    },2000)
+    },1600)
   }
 }
 
@@ -208,14 +209,13 @@ function responseBot(jawabanUser){
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
-    user.value = ''
     load.style.display = "none"
     body.style.opacity = "1"
-    bot.innerHTML = botSay(jawabanUser)[init] 
+    user.value = " "
+    bot.innerHTML = botSay(jawabanUser)[init]
   },1200)
 }
-}
-else{
-  alert(`yo ${namaLO}, balik gc `)
+}else{
+  alert("KEJAM LU " + namaLUU)
   window.location.reload()
 }
