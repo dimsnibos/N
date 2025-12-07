@@ -1,7 +1,7 @@
-let namaLU = prompt("masukkan nama anda")
-if(namaLU != "DIMAS" && namaLU != "PUTRA"){
-  alert("Hi " +namaLU)
-    const observer = new IntersectionObserver((entries) => {
+let namaEnte = prompt("masukkan nama anda")
+if(namaEnte != "DimasS" && namaEnte != "samid"){
+  alert("HI " + namaEnte +", Welcome here")
+  const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       if (entry.target.classList.contains("fade-left")) {
@@ -23,8 +23,8 @@ const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
+tengah.style.display = "block";
 
-tengah.style.display = "block"
 hamburger.addEventListener("click",()=>{
   if(tengah.style.display === "block"){
     tengah.style.display = "none"
@@ -32,7 +32,8 @@ hamburger.addEventListener("click",()=>{
     atas.style.rotate = "45deg"
     bawah.style.rotate = "-45deg"
     navMenu.style.maxHeight = "500px"
-  }else{
+  }
+  else{
     tengah.style.display = "block"
     atas.style.position = "relative"
     atas.style.rotate = "0deg"
@@ -45,7 +46,7 @@ const load = document.getElementById("loading")
 const body = document.body
 
 const navbar = document.getElementById("navbar")
-window.onscroll = ()=>{
+window.addEventListener("scroll",()=>{
   const header = document.querySelector("header")
   const fixedNav = header.offsetTop
   if(window.pageYOffset > fixedNav){
@@ -53,18 +54,18 @@ window.onscroll = ()=>{
   }else{
     navbar.style.boxShadow = "none"
   }
-}
+})
 
 const ig = document.getElementById("ig")
-ig.addEventListener("click",()=>{
+ig.onclick = ()=>{
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https://instagram.com/ptramadian_"
-  },1200)
-})
+    window.location.href="https://instagram.com/ptramadian_"
+  })
+}
 
 function whatssApp(){
   load.style.display = "flex"
@@ -72,8 +73,8 @@ function whatssApp(){
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https://wa.me/87763628863"
-  },1200)
+    window.location.href="https://wa.me/87763628863"
+  })
 }
 
 const kumpul = document.getElementById("submit")
@@ -90,7 +91,7 @@ const value = document.getElementById("value")
 const calcRight = document.getElementById("calcRight")
 const calcLeft = document.getElementById("calcLeft")
 
-const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
+const numbers =["1","2",'3',"4","5","6","7","8","9","(","0",")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
@@ -100,7 +101,7 @@ numbers.forEach((number)=>{
   calcLeft.append(button)
 })
 
-const operations =["+","-","/","x"]
+const operations = [ "+","-","x","/"]
 operations.forEach((operation)=>{
   const button = document.createElement("button")
   button.innerHTML = operation
@@ -109,6 +110,27 @@ operations.forEach((operation)=>{
   })
   calcRight.append(button)
 })
+
+const clear = document.createElement("button")
+clear.innerHTML = "CLEAR"
+clear.addEventListener("click",()=>{
+  value.innerHTML = "CLEAR THE AREA"
+  setTimeout(()=>{
+    value.innerHTML = " "
+  },1200)
+})
+calcRight.append(clear)
+
+const del = document.createElement("button")
+del.innerHTML = "DEL"
+del.addEventListener("click",()=>{
+  value.innerHTML = value.innerHTML.slice(0, -1)
+})
+calcRight.append(del)
+
+const bgr = document.createElement("button")
+bgr.innerHTML = "BGR"
+calcRight.append(bgr)
 
 const enter = document.createElement("button")
 enter.innerHTML = "ENTER"
@@ -119,38 +141,16 @@ enter.addEventListener("click",()=>{
     value.innerHTML = eval(ekspresi)
   }
   catch{
-    value.innerHTML = "ERROR OPERATIONS"
+    value.innerHTML = "ERROR SINTAX"
     setTimeout(()=>{
-      value.innerHTML =""
+      value.innerHTML = ""
     },1200)
-  }
+  } 
 })
 calcRight.append(enter)
 
-const del = document.createElement("button")
-del.innerHTML = "DEL"
-del.addEventListener("click",()=>{
-  value.innerHTML = value.innerHTML.slice(0, -1)
-})
-calcRight.append(del)
-
-const clear = document.createElement("button")
-clear.innerHTML = "CLEAR"
-clear.addEventListener("click",()=>{
-  value.innerHTML = "CLEAR THE AREA"
-  setTimeout(()=>{
-    value.innerHTML = ""
-  },1200)
-})
-calcRight.append(clear)
-
-const bgr = document.createElement("button")
-bgr.innerHTML = "BGR"
-calcRight.append(bgr)
-
-
 const piano = document.getElementById("chord")
-const chords = [ "a","c","d","e","f"]
+const chords = ["a","c","d","e","f"]
 chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
@@ -167,55 +167,55 @@ const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi Im jarvis, whats your name?`,
+    `Hi, im jarviss, who are you?`,
     `Hi ${data?.nama}, where are you from?`,
-    `Ouhh youre from ${data?.kota}, whats your hobby?`,
-    `Wiw ${data?.hobi}, thats interesting!`
+    `Ouhh youre from ${data?.kota}, whats your hoby?`,
+    `Wow ${data?.hobi}, such an Interesting hoby!!`,
   ]
 }
 
-let userData = [ ]
-let init = 0
+let init = 0 
+let userData = []
 bot.innerHTML = botSay()[0]
 
 function submit(){
-  init++
-  if(init ===1){
+  init ++
+  if(init === 1){
     responseBot({nama : user.value})
   }
   else if (init === 2){
-    responseBot({kota:user.value})
+    responseBot({kota : user.value})
   }
   else if(init === 3){
     responseBot({hobi : user.value})
     user.style.display = "none"
   }
   else if(init === 4){
-    bot.innerHTML = "Nice to know ya Pal !"
+    bot.innerHTML = "Nice to know you!"
     setTimeout(()=>{
       load.style.display = "flex"
       body.style.opacity = "0.7"
     },500)
     setTimeout(()=>{
-      load.style.display = "none"
-      body.style.opacity = "1"
+      body.style.opacity= "1"
+      load.style.display = "flex"
       window.location.reload()
     },1200)
   }
 }
 
 function responseBot(jawabanUser){
-  userData.push(user.value)
   load.style.display = "flex"
   body.style.opacity = "0.7"
+  userData.push(user.value)
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    bot.innerHTML = botSay(jawabanUser)[init]
     user.value = " "
+    bot.innerHTML = botSay(jawabanUser)[init]
   },1200)
 }
 }else{
-  alert("WRONG TETOT")
+  alert( namaEnte +", Ulangi")
   window.location.reload()
 }
