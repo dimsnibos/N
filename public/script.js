@@ -1,7 +1,5 @@
-let namaEnte = prompt("Siapa Nihh?")
-if(namaEnte != "Dimsuy" && namaEnte != "Dimas"){
-  alert("HII " +namaEnte+", Welcome" )
-  const observer = new IntersectionObserver((entries) => {
+
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       if (entry.target.classList.contains("fade-left")) {
@@ -10,14 +8,15 @@ if(namaEnte != "Dimsuy" && namaEnte != "Dimas"){
       if (entry.target.classList.contains("fade-right")) {
         entry.target.classList.add("show-right");
       }
-      if(entry.target.classList.contains("fade-bottom")){
+      if (entry.target.classList.contains("fade-bottom")) {
         entry.target.classList.add("show-bottom");
       }
     }
   });
-}, { threshold: 0.2 }); 
+}, { threshold: 0.2 });
 document.querySelectorAll(".fade-left, .fade-right, .fade-bottom")
   .forEach(el => observer.observe(el))
+
 
 const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
@@ -26,15 +25,14 @@ const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
 
 tengah.style.display = "block"
-hamburger.addEventListener("click",()=>{
-  if(tengah.style.display === "block"){
+hamburger.addEventListener("click", () => {
+  if (tengah.style.display === "block") {
     tengah.style.display = "none"
     atas.style.position = "absolute"
     atas.style.rotate = "45deg"
     bawah.style.rotate = "-45deg"
     navMenu.style.maxHeight = "500px"
-  }
-  else{
+  } else {
     tengah.style.display = "block"
     atas.style.position = "relative"
     atas.style.rotate = "0deg"
@@ -47,118 +45,128 @@ const load = document.getElementById("loading")
 const body = document.body
 
 const navbar = document.getElementById("navbar")
-window.onscroll = ()=>{
+window.addEventListener("scroll", () => {
   const header = document.querySelector("header")
-  if(window.pageYOffset > header.offsetTop){
+  const fixedNav = header.offsetTop
+  if (window.pageYOffset > fixedNav) {
     navbar.style.boxShadow = "0 0 9px 0 black"
-  }
-  else{
+  } else {
     navbar.style.boxShadow = "none"
   }
-}
+})
 
 const ig = document.getElementById("ig")
-ig.addEventListener("click",()=>{
+ig.addEventListener("click", function () {
   load.style.display = "flex"
   body.style.opacity = "0.7"
-  setTimeout(()=>{
+  setTimeout(() => {
     load.style.display = "none"
     body.style.opacity = "1"
     window.location.href = "https://instagram.com/ptramadian_"
-  },1200)
+  }, 1200)
 })
 
-const wa = document.getElementById("wa")
-wa.addEventListener("click",()=>{
+function whatssApp() {
   load.style.display = "flex"
   body.style.opacity = "0.7"
-  setTimeout(()=>{
+  setTimeout(() => {
     load.style.display = "none"
     body.style.opacity = "1"
     window.location.href = "https://wa.me/87763628863"
-  },1200)
-})
-
-function whatssApp(){
-  load.style.display = "flex"
-  body.style.opacity = "0.7"
-  setTimeout(()=>{
-    load.style.display = "none"
-    body.style.opacity = "1"
-    window.location.href = "https://wa.me/87763628863"
-  },1200)
+  }, 1200)
 }
 
-const value = document.getElementById("value")
-const calcLeft = document.getElementById("calcLeft")
-const calcRight = document.getElementById("calcRight")
+const wa = document.getElementById("wa")
+wa.addEventListener("click", () => {
+  load.style.display = "flex"
+  body.style.opacity = "0.7"
+  setTimeout(() => {
+    load.style.display = "none"
+    body.style.opacity = "1"
+    window.location.href = "https://wa.me/87763628863"
+  }, 1200)
+})
 
-const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
-numbers.forEach((number)=>{
+const kumpulin = document.getElementById("submit")
+kumpulin.addEventListener("click", () => {
+  load.style.display = "flex"
+  body.style.opacity = "0.7"
+  setTimeout(() => {
+    load.style.display = "none"
+    body.style.opacity = "1"
+  }, 1200)
+})
+
+const value = document.getElementById("value")
+const calcRight = document.getElementById("calcRight")
+const calcLeft = document.getElementById("calcLeft")
+
+const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "(", "0", ")"]
+numbers.forEach((number) => {
   const button = document.createElement("button")
   button.innerHTML = number
-  button.addEventListener("click",()=>{
+  button.addEventListener("click", () => {
     value.innerHTML += number
   })
   calcLeft.append(button)
 })
 
-const operations = [ "+","-","x","/"]
-operations.forEach((operation)=>{
+const operations = ["+", "-", "x", "/"]
+operations.forEach((operation) => {
   const button = document.createElement("button")
   button.innerHTML = operation
-  button.addEventListener("click",()=>{
+  button.addEventListener("click", function () {
     value.innerHTML += operation
   })
   calcRight.append(button)
 })
 
-const del = document.createElement("button")
-del.innerHTML = "DEL"
-del.addEventListener("click",()=>{
-  value.innerHTML = value.innerHTML.slice(0, -1)
-})
-calcRight.append(del)
-
-const clear = document.createElement("button")
-clear.innerHTML = "CLEAR"
-clear.addEventListener("click",()=>{
-  value.innerHTML = "CLEAR THE AREA"
-  setTimeout(()=>{
-    value.innerHTML = ''
-  },1200)
-})
-calcRight.append(clear)
-
 const enter = document.createElement("button")
 enter.innerHTML = "ENTER"
-enter.addEventListener("click",()=>{
-  let ekspresi = value.innerHTML
-  ekspresi = ekspresi.replace(/x/g,"*")
-  try{  //make try and Catch biar ketikaa command error, atau sintaks error, keseluruhan script js tetap berjalan,
-    value.innerHTML = eval(ekspresi)  //command ini (eval) berpotensi error jadinya make try and Catch
+enter.addEventListener("click", () => {
+  let nilai = value.innerHTML
+  nilai = nilai.replace(/x/g, "*")
+  try {   // make try and catch ketika kita mau make command yang berpotnesi error yaitu eval()
+    value.innerHTML = eval(nilai) //berpotensi error jika operasi ga sesuai
   }
-  catch{  //menangkapndan mengamankan code yg eror
+  catch {    //jadi ketika sintaks error tidak mematikan seluru program, karena ada catch untuk mengantisipasinya
     value.innerHTML = "ERROR"
-    setTimeout(()=>{
+    setTimeout(() => {
       value.innerHTML = " "
-    },1200)
+    })
   }
 })
 calcRight.append(enter)
+
+const clear = document.createElement("button")
+clear.innerHTML = "CLEAR"
+clear.addEventListener("click", () => {
+  value.innerHTML = "CLEAR THE AREA"
+  setTimeout(() => {
+    value.innerHTML = " "
+  }, 1200)
+})
+calcRight.append(clear)
+
+const del = document.createElement("button")
+del.innerHTML = "DEL"
+del.addEventListener("click", () => {
+  value.innerHTML = value.innerHTML.slice(0, -1)
+})
+calcRight.append(del)
 
 const bgr = document.createElement("button")
 bgr.innerHTML = "BGR"
 calcRight.append(bgr)
 
 const piano = document.getElementById("chord")
-const chords = ["a","c","d","e","f"]
-chords.forEach((chord)=>{
+const chords = ["a", "c", "d", "e", "f"]
+chords.forEach((chord) => {
   const button = document.createElement("button")
   button.innerHTML = chord
-  button.addEventListener("click",()=>{
+  button.addEventListener("click", () => {
     const sound = new Audio(`${chord}.wav`)
-    sound.play()
+    sound.play();
   })
   piano.append(button)
 })
@@ -168,34 +176,32 @@ const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi, Im Dimss, who are you?`,
-    `HII ${data?.nama}, where are you from?`,
+    `Hi Im DIMMS, Who are you?`,
+    `Hi $${data?.nama}, where are you from?`,
     `Ouhh youre from ${data?.kota}, whats your hobby?`,
-    `Wow ${data?.hobi}, such an interesting Hobby!`
+    `Wow ${data?.hobi}, thats quite interesting !`
   ]
 }
 
-let init = 0 
 let userData = []
 bot.innerHTML = botSay()[0]
+let init = 0
 
 function submit(){
-  init ++
+  init++
   if(init === 1){
     responseBot({nama : user.value})
-  }
-  else if(init === 2){
+  }else if(init === 2){
     responseBot({kota : user.value})
-  }
-  else if(init === 3){
+  }else if(init === 3){
     responseBot({hobi : user.value})
-    user.style.display = "none"
+    value.style.display = "none"
   }
   else if(init === 4){
-    bot.innerHTML = "Nice to Know YA !!"
+    bot.innerHTML = "Nice to know ya !"
     setTimeout(()=>{
       load.style.display = "flex"
-      body.style.opacity = "0.7"
+      body.style.opacity ="0.7"
     },500)
     setTimeout(()=>{
       load.style.display = "none"
@@ -205,29 +211,14 @@ function submit(){
   }
 }
 
-const Kirim = document.getElementById("submit")
-Kirim.addEventListener("click",()=>{
+function responseBot(jawabanUser){
+  userData.push(user.value)
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
-    load.style.display = "none"
-    body.style.opacity = "1"
-  },1200)
-  })
-
-  function responseBot(jawabanUser){
-    userData.push(user.value)
     load.style.display = "flex"
-    body.style.opacity = "0.7"
-    setTimeout(()=>{
-        load.style.display = "none"
-        body.style.opacity = "1"
-        bot.innerHTML = botSay(jawabanUser)[init]
-        user.value = ""
-    },1200)
-  }
-}
-else{
-  alert("No No ya " +namaEnte+" !")
-  window.location.reload()
+    body.style.opacity = "1"
+    value.innerHTML = ""
+    bot.innerHTML = botSay(jawabanUser)[init]
+  },1200)
 }
