@@ -1,6 +1,6 @@
-let kocak = prompt("Masukkan Nama Antum")
-if (kocak != "dImas" && kocak != "DimaS") {
-  alert(`Hi ${kocak}, Welcomee`)
+let namaLU = prompt("Masukkan nama anda")
+if (namaLU != "Dimass" && namaLU != "DIMASS") {
+  alert("HI " + namaLU + ", WELCOME")
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -25,8 +25,8 @@ if (kocak != "dImas" && kocak != "DimaS") {
   const tengah = document.getElementById("tengah")
   const bawah = document.getElementById("bawah")
   const navMenu = document.getElementById("nav-menu")
-
   tengah.style.display = "block"
+
   hamburger.addEventListener("click", () => {
     if (tengah.style.display === "block") {
       tengah.style.display = "none"
@@ -36,7 +36,7 @@ if (kocak != "dImas" && kocak != "DimaS") {
       navMenu.style.maxHeight = "500px"
     } else {
       tengah.style.display = "block"
-      atas.style.position = "absolute"
+      atas.style.position = "relative"
       atas.style.rotate = "0deg"
       bawah.style.rotate = "0deg"
       navMenu.style.maxHeight = "0px"
@@ -58,7 +58,7 @@ if (kocak != "dImas" && kocak != "DimaS") {
   })
 
   const ig = document.getElementById("ig")
-  ig.onclick = () => {
+  ig.addEventListener("click", () => {
     load.style.display = "flex"
     body.style.opacity = "0.7"
     setTimeout(() => {
@@ -66,17 +66,7 @@ if (kocak != "dImas" && kocak != "DimaS") {
       body.style.opacity = "1"
       window.location.href = "https://instagram.com/ptramadian_"
     }, 1200)
-  }
-
-  function whatssApp() {
-    load.style.display = "flex"
-    body.style.opacity = "0.7"
-    setTimeout(() => {
-      load.style.display = "none"
-      body.style.opacity = "1"
-      window.location.href = "https://wa.me/87763628863"
-    }, 1200)
-  }
+  })
 
   const wa = document.getElementById("wa")
   wa.addEventListener("click", () => {
@@ -89,19 +79,29 @@ if (kocak != "dImas" && kocak != "DimaS") {
     }, 1200)
   })
 
-  const kumpul = document.getElementById("submit")
-  kumpul.addEventListener("click", () => {
+  function whatssApp() {
     load.style.display = "flex"
     body.style.opacity = "0.7"
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-    })
-  })
+      window.location.href = "https://wa.me/87763628863"
+    }, 1200)
+  }
 
-  const value = document.getElementById("value")
-  const calcRight = document.getElementById("calcRight")
+  const kumpul = document.getElementById("submit")
+  kumpul.onclick = () => {
+    load.style.display = "flex"
+    body.style.opacity = "0.7"
+    setTimeout(() => {
+      load.style.display = "none"
+      body.style.opacity = "1"
+    }, 1200)
+  }
+
   const calcLeft = document.getElementById("calcLeft")
+  const calcRight = document.getElementById("calcRight")
+  const value = document.getElementById("value")
 
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "(", "0", ")"]
   numbers.forEach((number) => {
@@ -113,7 +113,7 @@ if (kocak != "dImas" && kocak != "DimaS") {
     calcLeft.append(button)
   })
 
-  const operations = ["+", "-", "/", "x"]
+  const operations = ["+", "-", "x", "/"]
   operations.forEach((operation) => {
     const button = document.createElement("button")
     button.innerHTML = operation
@@ -126,10 +126,10 @@ if (kocak != "dImas" && kocak != "DimaS") {
   const enter = document.createElement("button")
   enter.innerHTML = "ENTER"
   enter.addEventListener("click", () => {
-    let nilai = value.innerHTML
-    nilai = nilai.replace(/x/g, "*")
-    try {   //berpotensi error, yaitu fungsi eval, karena berpotensi, make try and catch biar kalo error program script js tetap berjalan
-      value.innerHTML = eval(nilai)
+    let ekspresi = value.innerHTML
+    ekspresi = ekspresi.replace(/x/g, "*")
+    try { //mengantisipasi program error menggunakan try and Catch!
+      value.innerHTML = eval(ekspresi)
     }
     catch {
       value.innerHTML = "ERROR"
@@ -152,7 +152,7 @@ if (kocak != "dImas" && kocak != "DimaS") {
   clear.addEventListener("click", () => {
     value.innerHTML = "CLEAR THE AREA"
     setTimeout(() => {
-      value.innerHTML = " "
+      value.innerHTML = ""
     }, 1200)
   })
   calcRight.append(clear)
@@ -178,28 +178,29 @@ if (kocak != "dImas" && kocak != "DimaS") {
 
   function botSay(data) {
     return [
-      `Hi IM DIMSS, who are youu?`,
+      `Hi Im DIMSS, whats your name?`,
       `Hi ${data?.nama}, where are you from?`,
       `Ouh youre from ${data?.kota}, whats your hobby?`,
-      `Wow ${data?.hobi}, such an Interesting hoby!`
+      `Wow ${data?.hobi}, such an Interesting Hobby!`
     ]
   }
 
+  let init = 0
   let userData = []
   bot.innerHTML = botSay()[0]
-  let init = 0
 
   function submit() {
     init++
     if (init === 1) {
       responseBot({ nama: user.value })
-    } else if (init === 2) {
+    }
+    else if (init === 2) {
       responseBot({ kota: user.value })
     } else if (init === 3) {
-      responseBot({ hobi: user.value })
+      responseBot({ kota: user.value })
       user.style.display = "none"
     } else if (init === 4) {
-      bot.innerHTML = "Nice to know ya!"
+      bot.innerHTML = "Nice to know ya !"
       setTimeout(() => {
         load.style.display = "flex"
         body.style.opacity = "0.7"
@@ -219,11 +220,11 @@ if (kocak != "dImas" && kocak != "DimaS") {
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-      user.value = ""
       bot.innerHTML = botSay(jawabanUser)[init]
-    })
+      user.value = ""
+    }, 1200)
   }
 } else {
-  alert(`No No ya ${kocak}`)
+  alert("NONONO YA " + namaLU)
   window.location.reload()
 }
