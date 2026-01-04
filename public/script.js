@@ -1,31 +1,32 @@
-let namaLu = prompt("MASUKKAN NAMA ANDA")
-if(namaLu != "dimsuy" && namaLu != "DIMAS"){
-  alert("HI " +namaLu+", Welcome!")
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (entry.target.classList.contains("fade-left")) {
-          entry.target.classList.add("show-left");
-        }
-        if (entry.target.classList.contains("fade-right")) {
-          entry.target.classList.add("show-right");
-        }
-        if (entry.target.classList.contains("fade-bottom")) {
-          entry.target.classList.add("show-bottom");
-        }
+let namaLu = prompt("Masukkan nama Anda")
+if(namaLu != "DIMS" && namaLu != "Wahyu"){
+  alert("HII" + namaLu +", Welcome!")
+  
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.classList.contains("fade-left")) {
+        entry.target.classList.add("show-left");
       }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll(".fade-left, .fade-right, .fade-bottom")
-    .forEach(el => observer.observe(el))
+      if (entry.target.classList.contains("fade-right")) {
+        entry.target.classList.add("show-right");
+      }
+      if (entry.target.classList.contains("fade-bottom")) {
+        entry.target.classList.add("show-bottom");
+      }
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll(".fade-left, .fade-right, .fade-bottom")
+  .forEach(el => observer.observe(el))
 
 const hamburger = document.getElementById("hamburger")
 const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
-
 tengah.style.display = "block"
+
 hamburger.addEventListener("click",()=>{
   if(tengah.style.display === "block"){
     tengah.style.display = "none"
@@ -35,12 +36,15 @@ hamburger.addEventListener("click",()=>{
     navMenu.style.maxHeight = "500px"
   }else{
     tengah.style.display = "block"
-    atas.style.rotate = "0deg"
     atas.style.position = "relative"
+    atas.style.rotate = "0deg"
     bawah.style.rotate = "0deg"
     navMenu.style.maxHeight = "0px"
   }
 })
+
+const load = document.getElementById("loading")
+const body = document.body
 
 const navbar = document.getElementById("navbar")
 window.addEventListener("scroll",()=>{
@@ -49,16 +53,13 @@ window.addEventListener("scroll",()=>{
   if(window.pageYOffset > fixedNav){
     navbar.style.boxShadow = "0 0 9px 0 black"
   }else{
-    navbar.style.boxShadow = "0px"
+    navbar.style.boxShadow = "none"
   }
 })
 
-const load = document.getElementById("loading")
-const body = document.body
-
 const ig = document.getElementById("ig")
 ig.addEventListener("click",()=>{
-  load.style.display = "flex"
+  load.style.dipslay = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
@@ -68,15 +69,15 @@ ig.addEventListener("click",()=>{
 })
 
 const wa = document.getElementById("wa")
-wa.onclick = ()=>{
+wa.addEventListener("click",()=>{
   load.style.display = "flex"
   body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https://wa.me/87763628863"
+    window.location.href ="https://wa.me/87763628863"
   },1200)
-}
+})
 
 function whatssApp(){
     load.style.display = "flex"
@@ -84,7 +85,7 @@ function whatssApp(){
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    window.location.href = "https://wa.me/87763628863"
+    window.location.href ="https://wa.me/87763628863"
   },1200)
 }
 
@@ -102,7 +103,7 @@ const value = document.getElementById("value")
 const calcLeft = document.getElementById("calcLeft")
 const calcRight = document.getElementById("calcRight")
 
-const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
+const numbers = ["1","2","3","4","5","6","7","8","9","(",'0',")"]
 numbers.forEach((number)=>{
   const button = document.createElement("button")
   button.innerHTML = number
@@ -127,9 +128,10 @@ enter.innerHTML = "ENTER"
 enter.addEventListener("click",()=>{
   let nilai = value.innerHTML
   nilai = nilai.replace(/x/g,"*")
-  try{  //mengantisipasi adanya error yg mematikan program, make try and catch agar ketika 1 program error, program lain masi jalan
+  try{ //untuk mengantisipasi adanya program yg berpotensi error yaitu eval(), jadi make try and catch agar ketika error kesluruahn program tidak mati
     value.innerHTML = eval(nilai)
-  }catch(error){
+  }
+  catch(error){
     value.innerHTML = "ERROR"
     setTimeout(()=>{
       value.innerHTML = ""
@@ -138,6 +140,16 @@ enter.addEventListener("click",()=>{
 })
 calcRight.append(enter)
 
+const clear = document.createElement("button")
+clear.innerHTML = "CLEAR"
+clear.addEventListener("click",()=>{
+  value.innerHTML = "CLEAR THE AREA"
+  setTimeout(()=>{
+    value.innerHTML = ""
+  })
+})
+calcRight.append(clear)
+
 const del = document.createElement("button")
 del.innerHTML = "DEL"
 del.addEventListener("click",()=>{
@@ -145,22 +157,12 @@ del.addEventListener("click",()=>{
 })
 calcRight.append(del)
 
-const clear = document.createElement("button")
-clear.innerHTML = "CLEAR"
-clear.addEventListener("click",()=>{
-  value.innerHTML = "CLEAR THE AREA"
-  setTimeout(()=>{
-    value.innerHTML = ""
-  },1200)
-})
-calcRight.append(clear)
-
 const bgr = document.createElement("button")
 bgr.innerHTML = "BGR"
 calcRight.append(bgr)
 
 const piano = document.getElementById("chord")
-const chords = ["a","c","d","e","f"]
+const chords = [ "a","c","d","e","f"]
 chords.forEach((chord)=>{
   const button = document.createElement("button")
   button.innerHTML = chord
@@ -176,16 +178,16 @@ const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
-    `Hi IM DIMS, whats your name?`,
-    `Hi ${data?.nama}, where are you from?`,
-    `Ouhh youre from ${data?.kota}, whats your hobby?`,
-    `Wow ${data?.hobi}, such an interesting Hobby!`
+    `Hi Im DIMSS, who are you?`,
+    `Ouhh youre ${data?.nama}, where are you from?`,
+    `Ouh youre from ${data?.kota}, whats your hoby?`,
+    `Wow ${data?.hobi}, such an interesting hoby!`
   ]
 }
 
-let init = 0
 let userData = []
 bot.innerHTML = botSay()[0]
+let init = 0
 
 function submit(){
   init++
@@ -194,11 +196,12 @@ function submit(){
   }
   else if(init === 2){
     responseBot({kota : user.value})
-  }else if(init === 3){
+  }
+  else if(init === 3){
     responseBot({hobi : user.value})
     user.style.display = "none"
-  }else if(init === 4){
-    bot.innerHTML = "Nice to know ya!"
+  }else if(init ==- 4){
+    bot.innerHTML = "NICE TO KNOW YA!"
     setTimeout(()=>{
       load.style.display = "flex"
       body.style.opacity = "0.7"
@@ -212,17 +215,17 @@ function submit(){
 }
 
 function responseBot(jawabanUser){
-  userData.push(user.value)
   load.style.display = "flex"
   body.style.opacity = "0.7"
+  userData.push(user.value)
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
-    bot.innerHTML = botSay(jawabanUser)[init]
     user.value = ""
+    bot.innerHTML = botSay(jawabanUser)[init]
   },1200)
 }
-
 }else{
-  alert("NONONO YAA " + namaLu)
+  alert("NONONO YA" + namaLu)
+  window.location.reload()
 }
