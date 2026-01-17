@@ -1,6 +1,6 @@
-let nama1 = prompt("Masukkan nama mu")
-if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
-  alert("HII " + nama1 + ", WELCOME!")
+let namaAntum = prompt("Masukkan Nama Anda")
+if (namaAntum != "dimsuy" && namaAntum != "DIMSUY") {
+  alert(`Hi ${namaAntum}, Welcomee`)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -19,10 +19,11 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
   document.querySelectorAll(".fade-left, .fade-right, .fade-bottom")
     .forEach(el => observer.observe(el))
 
+
   const hamburger = document.getElementById("hamburger")
   const atas = document.getElementById("atas")
-  const bawah = document.getElementById("bawah")
   const tengah = document.getElementById("tengah")
+  const bawah = document.getElementById("bawah")
   const navMenu = document.getElementById("nav-menu")
   tengah.style.display = "block"
 
@@ -31,30 +32,31 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
       tengah.style.display = "none"
       atas.style.position = "absolute"
       atas.style.rotate = "45deg"
-      navMenu.style.maxHeight = "500px"
       bawah.style.rotate = "-45deg"
+      navMenu.style.maxHeight = "500px"
+
     } else {
       tengah.style.display = "block"
-      atas.style.position = "relative"
       atas.style.rotate = "0deg"
+      atas.style.position = "relative"
       bawah.style.rotate = "0deg"
       navMenu.style.maxHeight = "0px"
     }
   })
 
-  const load = document.getElementById("loading")
-  const body = document.body
-
-  const navbar = document.getElementById("navbar")
+  const navbar = document.getElementById('navbar')
   window.addEventListener("scroll", () => {
-    const header = document.querySelector("header")                       //local scope dalam fungsi dan hanya bisa digunakan dalam fungsi
+    const header = document.querySelector("header")
     const fixedNav = header.offsetTop
     if (window.pageYOffset > fixedNav) {
       navbar.style.boxShadow = "0 0 9px 0 black"
     } else {
-      navbar.style.boxShadow = "0px"
+      navbar.style.boxShadow = 'none'
     }
   })
+
+  const load = document.getElementById("loading")
+  const body = document.body
 
   const ig = document.getElementById("ig")
   ig.addEventListener("click", () => {
@@ -63,7 +65,7 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-      window.location.href = "https://instagram.com/ptramadian_"
+      window.location.href = "https://intagram.com/ptramadian_"
     }, 1200)
   })
 
@@ -80,30 +82,20 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
 
   function whatssApp() {
     load.style.display = "flex"
-    body.style.opcity = "0.7"
-    setTimeout(() => {
-      load.style.display = "none"
-      body.style.opacity = "1"
-      window.location.href = "https://wa.me/6287763628863"
-    }, 1200)
-  }
-
-  const kumpul = document.getElementById("submit")
-  kumpul.addEventListener("click", () => {
-    load.style.display = "flex"
     body.style.opacity = "0.7"
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-    }, 1200)
-  })
+      window.location.href = "https://wa.me/6287763628863"
+    })
+  }
 
-  const calcRight = document.getElementById("calcRight")
   const calcLeft = document.getElementById("calcLeft")
+  const calcRight = document.getElementById("calcRight")
   const value = document.getElementById("value")
 
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "(", "0", ")"]
-  numbers.forEach((number) => {  //forEach untuk meloop elemen dalam array
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "(", '0', ")"]
+  numbers.forEach((number) => {
     const button = document.createElement("button")
     button.innerHTML = number
     button.addEventListener("click", () => {
@@ -112,14 +104,45 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
     calcLeft.append(button)
   })
 
-  const operations = ["+", "-", "x", "/"]
+  const operations = ["+", "-", "/", "x"]
   operations.forEach((operation) => {
-    const button = document.createElement('button')
-    button.innerHTML = operation
+    const button = document.createElement('button');
+    button.innerHTML = operation;
     button.addEventListener("click", () => {
-      value.innerHTML += operation
+      value.innerHTML += operation;
     })
     calcRight.append(button)
+  })
+
+  const del = document.createElement("button")
+  del.innerHTML = "DEL"
+  del.addEventListener("click", () => {
+    value.innerHTML += slice(0, -1)
+  })
+  calcRight.append(del)
+
+  const clear = document.createElement("button")
+  clear.innerHTML = 'CLEAR'
+  clear.addEventListener("click", () => {
+    value.innerHTML = "CLEAR THE AREA"
+    setTimeout(() => {
+      value.innerHTML = ""
+    }, 1200)
+  })
+  calcRight.append(clear)
+
+  const bgr = document.createElement("button")
+  bgr.innerHTML = "BGR"
+  calcRight.append(bgr)
+
+  const kumpul = document.getElementById("submit")
+  kumpul.addEventListener("click", () => {
+    load.style.display = "flex"
+    body.style.opacity = "0.7"
+    setTimeout(() => {
+      load.style.display = "none"
+      body.style.opcaity = "1"
+    }, 1200)
   })
 
   const enter = document.createElement("button")
@@ -131,36 +154,11 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
       value.innerHTML = eval(nilai)
     } catch {
       value.innerHTML = "ERROR"
-      setTimeout(() => {
-        value.innerHTML = " "
-      }, 1200)
     }
   })
   calcRight.append(enter)
 
-  const bgr = document.createElement("button")
-  bgr.innerHTML = "BGR"
-  calcRight.append(bgr)
-
-  const del = document.createElement("button")
-  del.innerHTML = "DEL"
-  del.addEventListener("click", () => {
-    value.innerHTML = value.innerHTML.slice(0, -1)
-  })
-  calcRight.append(del)
-
-  const clear = document.createElement("button")
-  clear.innerHTML = "CLEAR"
-  clear.addEventListener("click", () => {
-    value.innerHTML = "CLEAR THE AREA..."
-    setTimeout(() => {
-      value.innerHTML = ""
-    }, 1200)
-  })
-  calcRight.append(clear)
-
   const piano = document.getElementById("chord")
-
   const chords = ["a", "c", "d", "e", "f"]
   chords.forEach((chord) => {
     const button = document.createElement("button")
@@ -177,16 +175,16 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
 
   function botSay(data) {
     return [
-      `Hi im dims, who are you?`,
+      `Hi Im Dims, who are you?`,
       `Hi ${data?.nama}, where are you from?`,
-      `Ouh youre from ${data?.kota}, whats your hobby?`,
-      `Wow ${data?.hobi}, such an interesting hobby!`
+      `Ouhh youre from ${data?.kota}, whats your hobby?`,
+      `Wow ${data?.hobi}, such an interesting!`
     ]
   }
 
-  let init = 0
   let userData = []
   bot.innerHTML = botSay()[0]
+  let init = 0
 
   function submit() {
     init++
@@ -195,11 +193,13 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
     }
     else if (init === 2) {
       responseBot({ kota: user.value })
-    } else if (init === 3) {
+    }
+    else if (init === 3) {
       responseBot({ hobi: user.value })
       user.style.display = "none"
-    } else if (init === 4) {
-      bot.innerHTML = "Nice to Know Ya!"
+    }
+    else if (init === 4) {
+      bot.innerHTML = "Nice to know Ya!"
       setTimeout(() => {
         load.style.display = "flex"
         body.style.opacity = "0.7"
@@ -207,7 +207,7 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
       setTimeout(() => {
         load.style.display = "none"
         body.style.opacity = "1"
-        window.location.reload()
+        window.location.reload();
       }, 3000)
     }
   }
@@ -215,16 +215,18 @@ if (nama1 != "Dimsuy" || nama1 != "DIMASUY") {
   function responseBot(jawabanUser) {
     userData.push(user.value)
     load.style.display = "flex"
-    body.style.opacity = "0.7"
+    body.style.opcaity = "0.7"
     setTimeout(() => {
-      load.style.display = "none"
-      body.style.opacity = "1"
       user.value = ""
+      load.style.display = "none"
+      body.style.opcaity = "1"
       bot.innerHTML = botSay(jawabanUser)[init]
     }, 1200)
   }
 
 
-} else {
-  alert("NO NO YA " + nama1)
+}
+else {
+  alert(`No No ya ${namaAntum}`);
+  window.location.reload()
 }
