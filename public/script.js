@@ -1,6 +1,3 @@
-let userInfo = prompt("Masukkan Nama Anda")
-if(userInfo != "dimsuy" && userInfo != "DIMAS"){
-  alert("HII "+userInfo)
     const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -25,6 +22,7 @@ const atas = document.getElementById("atas")
 const tengah = document.getElementById("tengah")
 const bawah = document.getElementById("bawah")
 const navMenu = document.getElementById("nav-menu")
+
 tengah.style.display = "block"
 
 hamburger.addEventListener("click",()=>{
@@ -36,22 +34,10 @@ hamburger.addEventListener("click",()=>{
     navMenu.style.maxHeight = "500px"
   }else{
     tengah.style.display = "block"
-    atas.style.position = "absolute"
+    atas.style.position = "relative"
     atas.style.rotate = "0deg"
     bawah.style.rotate = "0deg"
     navMenu.style.maxHeight = "0px"
-  }
-})
-
-
-const navbar = document.getElementById("navbar")
-window.addEventListener("scroll",()=>{
-  const header = document.querySelector("header")
-  const fixedNav = header.offsetTop
-  if(window.pageYOffset > fixedNav){
-    navbar.style.boxShadow = "0 0 9px 0 black"
-  }else{
-    navbar.style.boxShadow = "none"
   }
 })
 
@@ -66,7 +52,18 @@ ig.addEventListener("click",()=>{
     load.style.display = "none"
     body.style.opacity = "1"
     window.location.href = "https://instagram.com/ptramadian_"
-  })
+  },1200)
+})
+
+const navbar = document.getElementById("navbar")
+window.addEventListener("scroll",()=>{
+  const header = document.querySelector("header")
+  const fixedNav = header.offsetTop
+  if(window.pageYOffset > fixedNav){
+    navbar.style.boxShadow = "0 0 9px 0 black"
+  }else{
+    navbar.style.boxShadow = "0px"
+  }
 })
 
 const wa = document.getElementById("wa")
@@ -88,12 +85,12 @@ function whatssApp(){
     body.style.opacity = "1"
     window.location.href = "https://wa.me/6287763628863"
   },1200)
-}
+} 
 
 const kumpul = document.getElementById("submit")
 kumpul.addEventListener("click",()=>{
   load.style.display = "flex"
-  body.style.opacityc= "0.7"
+  body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opacity = "1"
@@ -105,13 +102,13 @@ const calcRight = document.getElementById("calcRight")
 const value = document.getElementById("value")
 
 const numbers = ["1","2","3","4","5","6","7","8","9","(","0",")"]
-numbers.forEach((n)=>{
-    const button = document.createElement("button")
-    button.innerHTML = n
-    button.addEventListener("click",()=>{
-      value.innerHTML += n
-    })
-    calcLeft.append(button)
+numbers.forEach((number)=>{
+  const button = document.createElement("button")
+  button.innerHTML = number
+  button.addEventListener("click",()=>{
+    value.innerHTML  += number
+  })
+  calcLeft.append(button)
 })
 
 const operations = ["+","-","x","/"]
@@ -157,6 +154,10 @@ clear.addEventListener("click",()=>{
 })
 calcRight.append(clear)
 
+const bgr = document.createElement("button")
+bgr.innerHTML = "BGR"
+calcRight.append(bgr)
+
 const piano = document.getElementById("chord")
 const chords = ["a","c","d","e","f"]
 chords.forEach((chord)=>{
@@ -170,12 +171,12 @@ chords.forEach((chord)=>{
 })
 
 const user = document.getElementById("userTanya")
-const bot = document.getElementById("botJawab")
+const bot = document.getElementById("botjawab")
 
 function botSay(data){
   return[
-    `Hi im dims, who are you?`,
-    `hi ${data?.nama}, where are you from?`,
+    `Hi Im dims, who are you?`,
+    `Hi ${data?.nama}, where are you from?`,
     `Ouh youre from ${data?.kota}, whats your hobby?`,
     `Wow ${data?.hobi}, such an interesting hobby!`
   ]
@@ -192,35 +193,34 @@ function submit(){
   }
   else if(init === 2){
     responseBot({kota : user.value})
-  }else if(init === 3 ){
+  }
+  else if(init === 3){
     responseBot({hobi : user.value})
     user.style.display = "none"
-  }else if(init === 4){
-    bot.innerHTML = "Nice to know you!"
-    setTimeout(()=>{
+  }
+  else if(init === 4){
+    bot.innerHTML = "Nice to know Ya!"
+    setTimeout(()=>{ 
       load.style.display = "flex"
       body.style.opacity = "0.7"
-    },1000)
+    },500)
     setTimeout(()=>{
       load.style.display = "none"
       body.style.opacity = "1"
       window.location.reload()
-    })
+    },2000)
+    
   }
 }
 
 function responseBot(jawabanUser){
   userData.push(user.value)
   load.style.display = "flex"
-  body.style.opacity = "0.7"
+  body.style.opcaity = "0.7"
   setTimeout(()=>{
-    value.innerHTML = ""
     load.style.display = "none"
-    body.style.opacity = "1"
+    body.style.opcaity = "1"
     bot.innerHTML = botSay(jawabanUser)[init]
-  },1200 )
-}
-}else{
-  alert("NONO ya" + userInfo)
-  window.location.reload()
+    user.value = ""
+  },1200)
 }
