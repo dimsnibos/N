@@ -171,7 +171,7 @@ chords.forEach((chord)=>{
 })
 
 const user = document.getElementById("userTanya")
-const bot = document.getElementById("botjawab")
+const bot = document.getElementById("botJawab")
 
 function botSay(data){
   return[
@@ -216,7 +216,7 @@ function submit(){
 function responseBot(jawabanUser){
   userData.push(user.value)
   load.style.display = "flex"
-  body.style.opcaity = "0.7"
+  body.style.opacity = "0.7"
   setTimeout(()=>{
     load.style.display = "none"
     body.style.opcaity = "1"
