@@ -1,6 +1,6 @@
-let namaa = prompt("Masukkan Nama Anda")
-if (namaa != "DIMSUY" || namaa != "dimas") {
-  alert("HII Welcome " + namaa)
+let namaKoe = prompt("Masukkan Nama anda")
+if (namaKoe != "DIMM" || namaKoe != "SUY") {
+  alert("welcomee " + namaKoe)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -19,38 +19,25 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
   document.querySelectorAll(".fade-left, .fade-right, .fade-bottom")
     .forEach(el => observer.observe(el))
 
-
   const hamburger = document.getElementById("hamburger")
   const atas = document.getElementById("atas")
   const tengah = document.getElementById("tengah")
   const bawah = document.getElementById("bawah")
   const navMenu = document.getElementById("nav-menu")
+
   hamburger.addEventListener("click", () => {
-    if (tengah.style.display === "none") {
+    if (tengah.style.display === "block") {
+      tengah.style.display = "none"
+      atas.style.position = "absolute"
+      atas.style.rotate = "45deg"
+      bawah.style.rotate = "-45deg"
+      navMenu.style.maxHeight = "500px"
+    } else {
       tengah.style.display = "block"
       atas.style.position = "relative"
       atas.style.rotate = "0deg"
       bawah.style.rotate = "0deg"
       navMenu.style.maxHeight = "0px"
-    } else {
-      tengah.style.display = "none"
-      atas.style.rotate = "45deg"
-      atas.style.position = "absolute"
-      bawah.style.rotate = "-45deg"
-      navMenu.style.maxHeight = "500px"
-    }
-  })
-
-
-  const navbar = document.getElementById("navbar")
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector("header")
-    const fixedNav = header.offsetTop
-    if (window.pageYOffset > fixedNav) {
-      navbar.style.boxShadow = "0 0 9px 0 black"
-    }
-    else {
-      navbar.style.boxShadow = "none"
     }
   })
 
@@ -64,7 +51,7 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-      window.location.href = "https://intagram.com/ptramadian_"
+      window.location.href = "https://instagram.com/ptramadian_"
     }, 1200)
   })
 
@@ -85,7 +72,7 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
     setTimeout(() => {
       load.style.display = "none"
       body.style.opacity = "1"
-      window.location.href = "https://wa.me/62287763628863"
+      window.location.href = "https://wa.me/6287763628863"
     }, 1200)
   }
 
@@ -97,6 +84,17 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
       load.style.display = "none"
       body.style.opacity = "1"
     }, 1200)
+  })
+
+  const navbar = document.getElementById("navbar")
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("header")
+    const fixedNav = header.offsetTop
+    if (window.pageYOffset > fixedNav) {
+      navbar.style.boxShadow = "0 0 9px 0 black"
+    } else {
+      navbar.style.boxShadow = "none"
+    }
   })
 
   const calcLeft = document.getElementById("calcLeft")
@@ -114,11 +112,11 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
   })
 
   const operations = ["+", "-", "x", "/"]
-  operations.forEach((o) => {
+  operations.forEach((n) => {
     const button = document.createElement("button")
-    button.innerHTML = 0
+    button.innerHTML = n
     button.addEventListener("click", () => {
-      value.innerHTML += o
+      value.innerHTML += n
     })
     calcRight.append(button)
   })
@@ -133,16 +131,12 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
   const clear = document.createElement("button")
   clear.innerHTML = "CLEAR"
   clear.addEventListener("click", () => {
-    value.innerHTML = "Clear the area"
+    value.innerHTML = "CLEAR THE AREA"
     setTimeout(() => {
       value.innerHTML = ""
     }, 1200)
   })
   calcRight.append(clear)
-
-  const bgr = document.createElement("button")
-  bgr.innerHTML = "BGR"
-  calcRight.append(bgr)
 
   const enter = document.createElement("button")
   enter.innerHTML = "ENTER"
@@ -152,21 +146,24 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
     try {
       value.innerHTML = eval(nilai)
     } catch {
-      value.innerHTML = "ERROR"
+      value.innerHTML = "Eror"
       setTimeout(() => {
         value.innerHTML = ""
       }, 1200)
     }
   })
-  calcRight.append(enter)
+
+  const bgr = document.createElement("button")
+  bgr.innerHTML = "BGR"
+  calcRight.append(bgr)
 
   const piano = document.getElementById("chord")
-  const chords = ["a", "c", "d", "e", "f"]
-  chords.forEach((c) => {
+  const chords = ["a", "c", 'd', "e", "f"]
+  chords.forEach((n) => {
     const button = document.createElement("button")
-    button.innerHTML = c
+    button.innerHTML = n
     button.addEventListener("click", () => {
-      const sound = new Audio(`${c}.wav`)
+      const sound = new Audio(`${n}.wav`)
       sound.play()
     })
     piano.append(button)
@@ -177,15 +174,15 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
 
   function botSay(data) {
     return [
-      `Hi Im Dims, who R you?`,
-      `Hoi ${data?.nama}, where are you from?`,
-      `Ouh youre from ${data?.kota}, what's your hobby?`,
-      `Wow ${data?.hobi}, Such an interesting Hobi!`
+      `Hi Im Dims Who r you?`,
+      `Hi ${data?.nama}, where are you from?`,
+      `Ouh Youre from ${data?.kota}, whats your hobby?`,
+      `Wow ${data?.hobi}, such an interesting hobby!`
     ]
   }
 
-  let userData = []
   let init = 0
+  let userData = []
   bot.innerHTML = botSay()[0]
 
   function submit() {
@@ -198,16 +195,16 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
       responseBot({ hobi: user.value })
       user.style.display = "none"
     } else if (init === 4) {
-      bot.innerHTML = "Nice to know ya"
+      bot.innerHTML = "Nice to know Ya!"
       setTimeout(() => {
         load.style.display = "flex"
         body.style.opacity = "0.7"
-      }, 500)
+      }, 1200)
       setTimeout(() => {
         load.style.display = "none"
         body.style.opacity = "1"
         window.location.reload()
-      }, 2000)
+      }, 3000)
     }
   }
 
@@ -217,14 +214,11 @@ if (namaa != "DIMSUY" || namaa != "dimas") {
     body.style.opacity = "0.7"
     setTimeout(() => {
       load.style.display = "none"
-      user.value = ""
       body.style.opacity = "1"
-      bot.innerHTML = botSay(jawabanUser)[init]
+      bot.innerHTML = botSay(jawabanUser)[iniy]
     }, 1200)
   }
-
-
 } else {
-  alert("No No ya " + namaa)
+  alert("NONONO " + namaKoe)
   window.location.reload()
 }
